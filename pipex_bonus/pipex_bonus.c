@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 02:45:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/22 01:38:43 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/22 13:14:53 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **env)
 		return (pip_error(1));
 	i = 2;
 	fdfiles[0] = open(argv[1], O_RDONLY);
-	if (fdfiles[0] < 0 || fdfiles[1] < 0)
+	if (fdfiles[0] < 0)
 		error_handler_exit(argv[1]);
 	fdfiles[1] = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fdfiles[1] < 0)
