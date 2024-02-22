@@ -1,35 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils_bonus.c                                :+:      :+:    :+:   */
+/*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 02:45:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/22 01:35:35 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/22 13:44:48 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
+
+void	error_handler_exit(char *str)
+{
+	char	*firstw;
+
+	firstw = first_word(str, ' ');
+	if (!str)
+		exit(1);
+	if (is_spaces_only(str))
+		ft_putstr_fd("pipex: No such file of directory: \n", 2);
+	else
+	{
+		ft_putstr_fd("pipex: ", 2);
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(firstw, 2);
+	}
+	free(firstw);
+	exit(1);
+}
 
 char	*first_word(char *cmd, char c)
 {
 	char	*arr;
 	int		i;
-	int		word_len;
+	int		j;
 
 	if (!cmd)
 		return (NULL);
 	i = 0;
+	j = 0;
 	while (cmd[i] && cmd[i] == c)
 		i++;
-	while (cmd[i] && cmd[i] != c)
-		i++;
-	word_len = i;
-	arr = ft_substr(cmd, 0, word_len);
+	while (cmd[i + j] && cmd[i + j] != c)
+		j++;
+	arr = ft_substr(&cmd[i], 0, j);
+	ft_putendl_fd(arr, 2);
 	if (!arr)
 		return (NULL);
-	if (!i)
+	if (!i && !j)
 		arr = ft_strdup("");
 	return (arr);
 }
@@ -74,22 +95,6 @@ char	*ft_jointhree(char *cmdpath, char const *s1, char const *s2,
 		cmdpath[i++] = s3[j++];
 	cmdpath[i] = 0;
 	return (cmdpath);
-}
-
-void	error_handler_exit(char *str)
-{
-	if (!str)
-		exit(1);
-	if (is_spaces_only(str))
-		ft_putstr_fd("pipex: No such file of directory: \n", 2);
-	else
-	{
-		ft_putstr_fd("pipex: ", 2);
-		ft_putstr_fd(strerror(errno), 2);
-		ft_putstr_fd(": ", 2);
-		ft_putendl_fd(str, 2);
-	}
-	exit(1);
 }
 
 int	pip_error(int err)

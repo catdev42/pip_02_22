@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 02:45:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/22 13:38:14 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/22 13:44:11 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	error_handler_exit(char *str)
 	free(firstw);
 	exit(1);
 }
+
 char	*first_word(char *cmd, char c)
 {
 	char	*arr;
