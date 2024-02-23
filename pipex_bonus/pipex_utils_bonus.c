@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 02:45:09 by myakoven          #+#    #+#             */
-/*   Updated: 2024/02/22 13:44:11 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:12:01 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ char	*first_word(char *cmd, char c)
 	while (cmd[i + j] && cmd[i + j] != c)
 		j++;
 	arr = ft_substr(&cmd[i], 0, j);
-	ft_putendl_fd(arr, 2);
 	if (!arr)
 		return (NULL);
 	if (!i && !j)
